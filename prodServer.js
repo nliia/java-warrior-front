@@ -1,6 +1,7 @@
 const express = require("express"),
 	fallback = require("express-history-api-fallback"),
-	pp = require("project-paths");
+	pp = require("project-paths"),
+	projectMeta = require(pp.getA('configs', 'project.meta.js'));
 
 const app = express();
 
@@ -36,5 +37,5 @@ app.get("/", function (req, res, next) {
 });
 
 app.listen(9000, function () {
-	console.log("App listening on port 9000!");
+	console.log(`${projectMeta.title} listening on port 9000!`);
 });
