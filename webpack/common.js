@@ -65,11 +65,11 @@ module.exports = function(env) {
           loader: "awesome-typescript-loader"
         },
 
-        {
-          test: /\.jsx?$/,
-          loader: "react-hot-loader/webpack",
-          include: pp.getA("src")
-        },
+        // {
+        //   test: /\.jsx?$/,
+        //   loader: "react-hot-loader/webpack",
+        //   include: pp.getA("src")
+        // },
 
         {
           test: /\.json$/,
@@ -78,9 +78,24 @@ module.exports = function(env) {
         },
 
         {
-          test: /\.js$/,
+          test: /\.jsx?$/,
           exclude: [/node_modules/],
-          loader: `babel?${JSON.stringify(babelSettings)}`,
+          use: {
+            loader: `babel-loader`,
+            options: {
+              babelrc: true,
+              presets: [
+                require.resolve('babel-preset-env'),
+                require.resolve('babel-preset-react'),
+                require.resolve('babel-preset-es2015'),
+                require.resolve('babel-preset-stage-0'),
+                require.resolve('babel-preset-stage-1'),
+              ],
+              plugins: [
+                require.resolve('babel-plugin-transform-rebem-jsx')
+              ],
+            }
+          }
         },
 
         {
@@ -137,14 +152,16 @@ module.exports = function(env) {
           REBEM_MOD_DELIM: JSON.stringify('--'),
           REBEM_ELEM_DELIM: JSON.stringify('__')
         }
+      }),
+      new webpack.LoaderOptionsPlugin({
+        debug: true
       })
-      // new plugins.clean()
-    ]
+    ],
   };
 };
 
 
 const babelSettings = {
-	babelrc: false,
-	extends: pp.getA("/", ".babelrc")
+	babelrc: true,
+	// extends: pp.getA("/", ".babelrc")
 }

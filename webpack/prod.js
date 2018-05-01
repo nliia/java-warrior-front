@@ -23,11 +23,6 @@ function getConfig () {
 		},
 
 		plugins: [
-			new webpack.DefinePlugin({
-				"process.env": {
-					NODE_ENV: JSON.stringify("production")
-				}
-			}),
 			new plugins.babelEnginePlugin({
 				presets: ['env', 'es2015', 'react', 'stage-0', 'stage-1']
 			})
