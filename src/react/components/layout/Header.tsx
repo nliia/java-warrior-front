@@ -10,14 +10,13 @@ interface State {
 
 export default class Header extends React.Component<Props, State> {
 
-    render () {
+  render() {
+    return (
+      <header block="header">
+        {this.props.children}
+      </header>
+    )
 
-        return (
-            <header>
-                { this.props.children }
-            </header>
-        )
-
-    }
+  }
 
 }

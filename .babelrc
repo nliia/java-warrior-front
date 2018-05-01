@@ -5,5 +5,8 @@
         "node": "current",
         "uglify": true
       }
-    }],"react", "es2015", "stage-0", "stage-1"]
+    }],
+    "react", "es2015", "stage-0", "stage-1"
+  ],
+  "plugins": ["transform-rebem-jsx"]
 }

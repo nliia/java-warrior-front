@@ -1,5 +1,5 @@
-import Hello from './hello'
+import MainPage from './mainPage'
 
 export default {
-    Hello
+    MainPage
 }
