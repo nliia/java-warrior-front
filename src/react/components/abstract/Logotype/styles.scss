@@ -1,0 +1,23 @@
+@import "~styles/mixins/em";
+
+.logotype {
+
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  &__square {
+    width: 15px;
+    height: 15px;
+    background-color: #ff863d;
+    display: inline-block;
+    margin-right: 8px;
+  }
+
+  &__title {
+    color: white;
+    font-weight: 500;
+    font-size: em(20);
+  }
+
+}

@@ -42,9 +42,10 @@ module.exports = function(env) {
       extensions: [".js", ".jsx", ".ts", ".tsx", ".json", ".sass", ".scss", ".vue"],
       modules: [pp.get("/", "node_modules")],
       alias: {
-        _fonts: pp.get("assets", "fonts"),
-        _img: pp.get("assets", "img"),
-        _styles: pp.get("assets", "styles")
+        fonts: pp.getA("assets", "fonts"),
+        img: pp.getA("assets", "img"),
+        styles: pp.getA("assets", "styles"),
+        utils: pp.getA("src", "utils")
       }
     },
 
@@ -65,11 +66,11 @@ module.exports = function(env) {
           loader: "awesome-typescript-loader"
         },
 
-        // {
-        //   test: /\.jsx?$/,
-        //   loader: "react-hot-loader/webpack",
-        //   include: pp.getA("src")
-        // },
+        {
+          test: /\.jsx?$/,
+          loader: "react-hot-loader/webpack",
+          include: pp.getA("src")
+        },
 
         {
           test: /\.json$/,

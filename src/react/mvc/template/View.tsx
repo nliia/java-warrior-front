@@ -2,6 +2,8 @@ import * as React from 'react'
 import Components from '../../components'
 import Controller from './Controller'
 
+import './styles.scss'
+
 interface Props {
     controller: Controller
 }
