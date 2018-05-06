@@ -38,6 +38,11 @@ module.exports = function(env) {
       chunkFilename: "[id].[hash].js"
     },
 
+    node: {
+			fs: 'empty',
+			net: 'empty'
+		},
+
     resolve: {
       extensions: [".js", ".jsx", ".ts", ".tsx", ".json", ".sass", ".scss", ".vue"],
       modules: [pp.get("/", "node_modules")],
