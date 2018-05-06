@@ -1,0 +1,66 @@
+@import "~styles/mixins/em";
+
+.mainHero {
+
+  padding-top: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__head {
+    color: white;
+    font-size: em(95);
+    font-weight: bold;
+    line-height: 100%;
+  }
+
+  &__description {
+    font-size: em(28);
+    font-weight: normal;
+    color: white;
+    line-height: normal;
+    margin-top: 30px;
+  }
+
+  &__buttons {
+    margin-top: 80px;
+    & > .button {
+      margin-right: 20px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  &__hero {
+    width: 540px;
+    height: 540px;
+    overflow: hidden;
+    position: relative;
+    background: url("~img/png/bomj.png") no-repeat;
+    background-position: 50% 50%;
+  }
+
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    visibility: hidden;
+  }
+  to {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    visibility: visible;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
