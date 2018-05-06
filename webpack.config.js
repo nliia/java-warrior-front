@@ -19,4 +19,4 @@ function getConfig(env) {
 	return _.mergeWith(environments.common(env), environments[env], mergingRules);
 }
 
-module.exports = env => getConfig(env.NODE_ENV || process.env.NODE_ENV);
+module.exports = env => getConfig(process.env.NODE_ENV || env.NODE_ENV);
