@@ -35,6 +35,7 @@ app.get("/", function (req, res, next) {
 	});
 });
 
-app.listen(9000, function () {
-	console.log(`${projectMeta.title} listening on port 9000!`);
+let port = process.env.PORT || 5000;
+app.listen(port, function () {
+	console.log(`${projectMeta.title} listening on port ${port}!`);
 });
