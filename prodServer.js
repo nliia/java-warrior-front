@@ -1,11 +1,10 @@
 const express = require("express"),
 	fallback = require("express-history-api-fallback"),
-	pp = require("project-paths"),
-	projectMeta = require(pp.getA('configs', 'project.meta.js'));
+	projectMeta = require('./configs/project.meta');
 
 const app = express();
 
-const root = pp.get("build");
+const root = './build';
 
 app.use(express.static(root));
 
