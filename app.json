@@ -1,0 +1,7 @@
+{
+    "name": "Java Warrior Client",
+    "description": "Amazing Java Warrior Client",
+    "repository": "https://github.com/Azatick/java-warrior-front",
+    "keywords": ["react", "redux", "node", "javascript", "typescript"],
+    "image": "heroku/nodejs"
+}
