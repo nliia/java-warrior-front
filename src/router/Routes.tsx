@@ -11,6 +11,9 @@ export default [
     },
     {
         path: "/choosing-hero", component: MVC.ChoosingHero.Controller, exact: true 
+    },
+    {
+        path: "/game", component: MVC.Game.Controller, exact: true
     }
 ] as RouteConfig[]
 

@@ -13,7 +13,8 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement>, WithClass
     href?: string
 }
 
-class Button extends React.Component<Props> {
+
+export class Button extends React.Component<Props> {
 
     onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         if (this.props.href) {
@@ -46,7 +47,6 @@ class Button extends React.Component<Props> {
     }
 
 }
-
 
 export default withRouter(Button)
 

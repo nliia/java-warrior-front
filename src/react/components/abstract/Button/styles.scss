@@ -7,6 +7,14 @@
   transition: color .3s, background .3s, border-color .3s;
   color: white;
   border-radius: 5px;
+  &[disabled] {
+    cursor: not-allowed !important;
+    background: rgba(#585a66, .5) !important;
+    color: rgba(white, .3);    
+    &:hover {
+      color: rgba(white, .3); 
+    }
+  }
   &:hover {
     cursor: pointer;
   }
