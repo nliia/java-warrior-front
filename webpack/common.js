@@ -57,7 +57,8 @@ module.exports = function(env) {
     },
 
     module: {
-      rules: [{
+      rules: [
+        {
           test: /\.ejs$/,
           loader: "ejs-loader"
         },
