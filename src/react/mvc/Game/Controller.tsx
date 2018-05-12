@@ -11,6 +11,7 @@ interface Props {
 
 interface State {
     levelInfo: LevelInfo
+    code: string
 }
 
 /**
@@ -25,8 +26,14 @@ export default class Controller extends React.Component<Props, State> {
         this.state = {
             levelInfo: {
                 hasError: true
-            }
+            },
+            code: ""
         }
+    }
+
+    onChange = (code: string) => {
+        console.log(code)
+        this.setState({ code })
     }
 
     @Loading('levelArea', 'Загрузка игрового уровня...')

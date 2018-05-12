@@ -38,6 +38,7 @@
 
     &__editor {
         width: 460px;
+        overflow: hidden;
     }
 
     &__footer {
@@ -46,4 +47,30 @@
         margin-top: 30px;
     }
 
+    &__map {
+        height: 200px;
+    }
+
+    &__logs, &__error {
+        padding: 30px;
+        box-sizing: border-box;
+        font-size: em(12);
+        font-weight: normal;
+    }
+
+    &__message {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    &__error {
+        color: #ff2323;
+    }
+
+}
+
+.ace-twilight {
+    background: #202131 !important;
+    & .ace_gutter {
+        background: #1C1B2A !important;            
+    }
 }

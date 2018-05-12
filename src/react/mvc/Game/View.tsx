@@ -1,6 +1,11 @@
 import * as React from 'react'
 import Components from '../../components'
 import Controller from './Controller'
+import AceEditor from 'react-ace'
+import brace from 'brace'
+
+import 'brace/mode/java';
+import 'brace/theme/twilight';
 
 import './styles.scss'
 import b_ from '../../../utils/BEM';
@@ -39,10 +44,30 @@ export default class View extends React.Component<Props, State> {
                     </header>
                     <div className={game_({ elem: 'container' })}>
                         <div className={game_({ elem: 'area', mix: { block: 'game-block' } })}>
-                        
+                            <div className={game_({ elem: 'map' })}>
+
+                            </div>
+                            <div className={game_({ elem: 'logs' })}>
+                                <p className={game_({ elem: 'message' })}>Шаг 1: Агент Николай сделал шаг вперед</p>
+                                <p className={game_({ elem: 'message' })}>Шаг 2: Агент Николай получил удар заточкой в ребро</p>
+                            </div>
+                            <div className={game_({ elem: 'errors' })}>
+                                <p className={game_({ elem: 'error' })}>Ошибка!</p>
+                            </div>
                         </div>
                         <div className={game_({ elem: 'editor', mix: { block: 'game-block' } })}>
-                        </div>                        
+                            <AceEditor
+                                mode="java"
+                                theme="twilight"
+                                fontSize={14}
+                                width="100%"
+                                height="100%"
+                                enableLiveAutocompletion
+                                enableBasicAutocompletion
+                                value={this.props.controller.state.code}
+                                onChange={this.props.controller.onChange}
+                            />
+                        </div>
                     </div>
                     <div className={game_({ elem: 'footer' })}>
                         <Components.Abstract.Button

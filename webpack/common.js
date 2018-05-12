@@ -38,10 +38,12 @@ module.exports = function(env) {
       chunkFilename: "[id].[hash].js"
     },
 
+    target: 'web',
+
     node: {
-			fs: 'empty',
-			net: 'empty'
-		},
+      fs: 'empty',
+      net: 'empty'
+    },
 
     resolve: {
       extensions: [".js", ".jsx", ".ts", ".tsx", ".json", ".sass", ".scss", ".vue"],
@@ -91,7 +93,7 @@ module.exports = function(env) {
             options: {
               babelrc: true,
               presets: [
-                require.resolve('babel-preset-env'),
+                // require.resolve('babel-preset-env'),
                 require.resolve('babel-preset-react'),
                 require.resolve('babel-preset-es2015'),
                 require.resolve('babel-preset-stage-0'),
