@@ -4,7 +4,6 @@ import './styles.scss'
 import b_ from '../../../../utils/BEM';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { LoadingsStore } from '../../../../redux/reducers/Loadings';
 import { Reducers } from '../../../../redux/reducers';
 import LoadingsProps from '../../../../redux/props/LoadingsProps';
 import ReduxActions from '../../../../redux/actions'

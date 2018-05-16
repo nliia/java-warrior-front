@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'IBM Plex Mono';
+    src: url('IBMPlexMono.eot');
+    src: local('IBM Plex Mono'), local('IBMPlexMono'),
+        url('IBMPlexMono.eot?#iefix') format('embedded-opentype'),
+        url('IBMPlexMono.woff2') format('woff2'),
+        url('IBMPlexMono.woff') format('woff'),
+        url('IBMPlexMono.ttf') format('truetype'),
+        url('IBMPlexMono.svg#IBMPlexMono') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+

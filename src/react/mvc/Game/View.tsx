@@ -1,8 +1,10 @@
 import * as React from 'react'
 import Components from '../../components'
-import Controller from './Controller'
+import { Controller } from './Controller'
 import AceEditor from 'react-ace'
 import brace from 'brace'
+
+import CardImage from '../../../assets/img/png/card.png'
 
 import 'brace/mode/java';
 import 'brace/theme/twilight';
@@ -18,7 +20,8 @@ interface State {
 
 }
 
-const game_ = b_('game')
+const game_ = b_('game'),
+    facilities_ = b_('facilities')
 
 /**
  * View
@@ -26,6 +29,27 @@ const game_ = b_('game')
  * вызовы методов, описанных в контроллере
  */
 export default class View extends React.Component<Props, State> {
+
+    showFacilities = () => {
+        this.props.controller.props.modalsActions.show({
+            name: 'facilities',
+            title: 'Возможности',
+            content: [
+                <div className={facilities_()}>
+                    { facilities.map(f => {
+                        return (
+                            <div className={facilities_({ elem: 'item' })}>
+                                <p className={facilities_({ elem: 'title' })}>{f.title}</p>
+                                <p className={facilities_({ elem: 'description' })}>{f.description}</p>
+                            </div>
+                        )
+                    }) }
+                </div>
+            ],
+            icon: CardImage,
+            closable: true
+        })
+    }
 
     render() {
         return (
@@ -37,6 +61,7 @@ export default class View extends React.Component<Props, State> {
                         <p className={game_({ elem: 'title' })}>Уровень {this.props.controller.state.levelInfo.levelNumber}</p>
                         <Components.Abstract.Button
                             type="primary"
+                            onClick={this.showFacilities}
                             size="normal"
                         >
                             Возможности
@@ -73,7 +98,8 @@ export default class View extends React.Component<Props, State> {
                         <Components.Abstract.Button
                             type="active"
                             size="normal"
-                            disabled={this.props.controller.state.levelInfo.hasError}
+                            onClick={this.props.controller.onCompileCode}
+                            disabled={!this.props.controller.state.code.length}
                         >
                             Компилировать
                         </Components.Abstract.Button>
@@ -85,3 +111,10 @@ export default class View extends React.Component<Props, State> {
     }
 
 }
+
+const facilities = [
+    { title: 'warrior.walk()', description: 'движение персонажа вперед' },
+    { title: 'warrior.walk()', description: 'движение персонажа вперед с поклеточной проверкой на наличие врага' },
+    { title: 'warrior.walk()', description: 'движение персонажа вперед' },
+    { title: 'warrior.walk()', description: 'движение персонажа вперед' },
+]

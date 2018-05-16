@@ -48,7 +48,12 @@
     }
 
     &__map {
-        height: 200px;
+        $proportion: 0.420625;
+        height: 530px * $proportion;
+        width: 1600px * $proportion;
+        background: url("~img/png/map.png");
+        background-size: contain;
+        background-repeat: no-repeat;
     }
 
     &__logs, &__error {
@@ -73,4 +78,22 @@
     & .ace_gutter {
         background: #1C1B2A !important;            
     }
+}
+
+.facilities {
+
+    &__item {
+        margin-bottom: 25px;
+    }
+
+    &__title {
+        font-family: 'IBM Plex Mono', sans-serif;
+        font-size: em(18);
+        color: rgba(0, 0, 0, 0.87);
+    }
+
+    &__description {
+        color: rgba(0, 0, 0, 0.3);
+    }
+
 }
