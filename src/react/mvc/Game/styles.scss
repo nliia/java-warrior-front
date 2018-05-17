@@ -48,12 +48,7 @@
     }
 
     &__map {
-        $proportion: 0.420625;
-        height: 530px * $proportion;
-        width: 1600px * $proportion;
-        background: url("~img/png/map.png");
-        background-size: contain;
-        background-repeat: no-repeat;
+
     }
 
     &__logs, &__error {
@@ -69,6 +64,11 @@
 
     &__error {
         color: #ff2323;
+        padding-right: 0;
+        & pre {
+            max-height: 100px;
+            overflow-y: auto;
+        }
     }
 
 }

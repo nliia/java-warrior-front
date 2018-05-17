@@ -1,0 +1,53 @@
+.game-map {
+  $proportion: 0.420625;
+  height: 530px * $proportion;
+  width: 1600px * $proportion;
+  background: url("~img/png/map.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: relative;
+
+  &__fields {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: flex;
+  }
+
+  &__field {
+    width: 100px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & img {
+      width: auto;
+      height: 80px;
+    }
+    &--hero {
+      & img {
+        margin-top: -70px;
+        height: 90px;
+      }
+    }
+    &--enemy {
+      & img {
+        margin-top: -40px;
+        margin-right: -30px;
+        height: 90px;
+        -moz-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+        filter: FlipH;
+        -ms-filter: "FlipH";
+      }
+    }
+    &--thorns {
+      & img {
+        height: 90px;
+        margin-right: -15px;
+      }
+    }
+  }
+}

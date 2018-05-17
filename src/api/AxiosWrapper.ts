@@ -1,6 +1,6 @@
 import axios, { AxiosResponse, AxiosAdapter, AxiosBasicCredentials, AxiosTransformer, AxiosProxyConfig, CancelToken } from "axios"
 
-const api = "https://java-warrior.herokuapp.com"
+const api = "http://localhost:8080"
 
 export default class AxiosWrapper {
 

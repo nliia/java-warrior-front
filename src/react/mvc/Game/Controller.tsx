@@ -9,7 +9,10 @@ import ReduxActions from '../../../redux/actions'
 import ModalsProps from "../../../redux/props/ModalsProps";
 
 import PistolImage from '../../../assets/img/png/pistol.png'
-import CompilingApi from "../../../api/CompilingApi";
+import StageCompleteImage from '../../../assets/img/png/stage-completed.png'
+import StageFailedImage from '../../../assets/img/png/stage-failed.png'
+import CompilingApi, {CompileResponse} from "../../../api/CompilingApi";
+import {MapScheme} from "../../components/abstract/Map";
 
 interface Props extends ModalsProps {
     name
@@ -17,7 +20,9 @@ interface Props extends ModalsProps {
 
 interface State {
     levelInfo: LevelInfo
+    compilingInfo: CompileResponse
     code: string
+    tryingNumber?: number
 }
 
 /**
@@ -27,14 +32,53 @@ interface State {
 @LoadingController
 export class Controller extends React.Component<Props, State> {
 
+    defaultState : State = {
+        levelInfo: {
+            number: 1,
+            description: 'Первой миссией является попадание внутрь небольшого наркопритона в черте города для нахождения улик и зацепок. Попасть внутрь решается через запасной ход',
+            icon: PistolImage,
+            mapScheme: [
+                MapScheme.hero,
+                MapScheme.thorns,
+                MapScheme.field,
+                MapScheme.enemy,
+                MapScheme.field
+            ],
+            messages: [ 'Начало игры' ]
+        },
+        compilingInfo: new CompileResponse(),
+        code: ""
+    }
+
     constructor (props) {
         super(props);
-        this.state = {
-            levelInfo: {
-                hasError: true
-            },
-            code: ""
+        this.state = {...this.defaultState, tryingNumber: 0}
+    }
+
+    closeModal = (name: string) => {
+        this.props.modalsActions.close(name);
+    }
+
+    @Loading('editor', 'Компиляция...')
+    async compileCode (code: string) {
+        let compilingInfo = await CompilingApi.compile(code);
+        let { levelInfo, tryingNumber } = this.state;
+        tryingNumber++
+        if (compilingInfo.message) {
+            levelInfo.messages = [...levelInfo.messages, compilingInfo.message];
         }
+        this.setState({ levelInfo })
+        if (compilingInfo.stageCompleted) {
+            this.openStageCompletedModal();
+        }
+        if (compilingInfo.message == "Hero died!") {
+            if (tryingNumber == 10) {
+                this.openLooserModal();
+            } else {
+                this.openHeroDiedModal();
+            }
+        }
+        this.setState({ compilingInfo, tryingNumber })
     }
 
     onChange = (code: string) => {
@@ -42,43 +86,79 @@ export class Controller extends React.Component<Props, State> {
     }
 
     onCompileCode = async () => {
-        await CompilingApi.compile(this.state.code)
+        await this.compileCode(this.state.code);
     }
 
-    onStartCoding = () => {
-        this.props.modalsActions.close('levelInfo');
+    onStartAgain = () => {
+        this.setState({...this.defaultState })
+        this.closeModal('stageFailed');
     }
 
     @Loading('levelArea', 'Загрузка игрового уровня...')
     async componentDidMount () {
         let { levelInfo } = this.state;
-        let levelNumber : number = await new Promise<number>((resolve, reject) => {
-            setTimeout(() => {
-                resolve(1)
-            }, 3000)
-        })
-        levelInfo.levelNumber = 1;
-        this.setState({ levelInfo })
 
         this.props.modalsActions.show({
             name: 'levelInfo',
-            title: `Уровень ${levelInfo.levelNumber}`,
-            icon: PistolImage,
+            title: `Уровень ${levelInfo.number}`,
+            icon: levelInfo.icon,
             buttonText: 'Погнали кодить!',
-            onButtonClick: this.onStartCoding,
+            onButtonClick: () => this.closeModal('levelInfo'),
             content: [
                 <p style={{ textAlign: 'center', fontSize: '20px' }}>
-                    Первой миссией является попадание внутрь небольшого наркопритона в черте города для нахождения улик и зацепок. Попасть внутрь решается через запасной ход
+                    {levelInfo.description}
                 </p>
             ]
         })
-
-        setTimeout(() => {
-            levelInfo.hasError = false;
-            this.setState({ levelInfo })
-        }, 5000)
     }
 
+    openHeroDiedModal () {
+        this.props.modalsActions.show({
+            name: 'stageFailed',
+            title: `Ну, вот…`,
+            icon: StageFailedImage,
+            buttonText: 'Попробовать снова',
+            onButtonClick: () => this.onStartAgain(),
+            content: [
+                <p style={{ textAlign: 'center', fontSize: '20px' }}>
+                    Компиляция пошла не по плану, ваш персонаж сдох…
+                </p>
+            ]
+        })
+    }
+
+    openStageCompletedModal () {
+        this.props.modalsActions.show({
+            name: 'stageCompleted',
+            title: `Йеее, бой!`,
+            icon: StageCompleteImage,
+            buttonText: 'Следующий уровень',
+            onButtonClick: () => this.closeModal('stageCompleted'),
+            content: [
+                <p style={{ textAlign: 'center', fontSize: '20px' }}>
+                    Успех есть — можно поесть!
+                </p>
+            ]
+        })
+    }
+
+    openLooserModal () {
+        this.props.modalsActions.show({
+            name: 'youLooser',
+            title: `Ну, вот…`,
+            icon: StageFailedImage,
+            buttonText: 'Попробовать снова',
+            onButtonClick: () => {
+                this.onStartAgain();
+                this.setState({ tryingNumber: 0 })
+            },
+            content: [
+                <p style={{ textAlign: 'center', fontSize: '20px' }}>
+                    Ну ты и лошара
+                </p>
+            ]
+        })
+    }
 
     render () {
         return [
@@ -98,7 +178,10 @@ export default connect(null, mapDispatchToProps)(Controller)
 
 interface LevelInfo {
 
-    levelNumber?: number;
-    hasError?: boolean;
+    number?: number
+    description?: string
+    icon: string
+    mapScheme: MapScheme[]
+    messages: string[]
 
 }

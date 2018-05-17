@@ -18,7 +18,6 @@ export default (state: ModalsStore = {}, action: IAction) => {
         case Types.SHOW:
             return { ...state, [payload.name]: { ...payload, visible: true } }
         case Types.CLOSE:
-            console.log(state, payload.name)
             state[payload.name].visible = false;
             return { ...state }
         default:
