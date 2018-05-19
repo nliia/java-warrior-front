@@ -2,15 +2,16 @@ import * as React from 'react'
 
 import View from './View'
 
-import Bomj from 'img/png/bomj.png'
+import Bomj from 'img/png/hero/swat.png'
 
 interface Props {
 
 }
 
 interface State {
-    heroes: ChooseItem[]
+    heroes: ChooseItem[];
     choosedIndex: number;
+    playerName: string
 }
 
 /**
@@ -23,7 +24,8 @@ export default class Controller extends React.Component<Props, State> {
         super(props);
         this.state = {
             heroes: [],
-            choosedIndex: undefined
+            choosedIndex: undefined,
+            playerName: ''
         }
     }
 
@@ -40,6 +42,10 @@ export default class Controller extends React.Component<Props, State> {
 
     onChoose = (choosedIndex: number) => {
         this.setState({ choosedIndex })
+    }
+
+    onChangePlayerName = (e) => {
+        this.setState({ playerName: e.target.value })
     }
 
     render () {

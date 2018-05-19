@@ -3,13 +3,12 @@ import b_ from "../../../../utils/BEM";
 
 import './styles.scss'
 
-import HeroImage from '../../../../assets/img/png/bomj.png'
-import ThornsImage from '../../../../assets/img/png/thorns.png'
-import EnemyImage from '../../../../assets/img/png/enemy.png'
+import * as $ from 'jquery'
+import {Action} from "../../../../api/CompilingApi";
 
 interface Props {
     scheme: MapScheme[]
-    actions: ActionType[]
+    actions: Action[]
 }
 
 interface State {
@@ -18,11 +17,13 @@ interface State {
 export enum MapScheme {
     hero,
     enemy,
-    field,
+    empty,
     thorns
 }
 
-export type ActionType = "MOVE_FORWARD" | "SHOOT" | "FLIP_FORWARD"
+export enum HeroState {
+
+}
 
 let map_ = b_('game-map')
 
@@ -32,23 +33,14 @@ export default class Map extends React.Component<Props, State> {
         return MapScheme[entity];
     }
 
-    getImage (entity: MapScheme) {
-        switch (entity) {
-            case MapScheme.enemy:
-                return EnemyImage;
-            case MapScheme.thorns:
-                return ThornsImage;
-            case MapScheme.hero:
-                return HeroImage;
-        }
-
-    }
-
-    wrapImage (image: string, entity: MapScheme, index: number) {
+    wrapImage (entity: MapScheme, index: number) {
         return (
-            <div key={index} className={map_({ elem: 'field', mods: { [this.getTag(entity)]: true } })}>
-                <img src={image}/>
-            </div>
+            <div id={entity == MapScheme.hero ? "hero" : undefined} key={index} className={map_({
+                elem: 'field',
+                mods: {
+                    [this.getTag(entity)]: true,
+                }
+            })}></div>
         )
     }
 
@@ -57,7 +49,7 @@ export default class Map extends React.Component<Props, State> {
             <div className={map_()}>
                 <div className={map_({ elem: 'fields' })}>
                     {this.props.scheme.map((ent, index) => {
-                        return this.wrapImage(this.getImage(ent), ent, index)
+                        return this.wrapImage(ent, index)
                     })}
                 </div>
             </div>

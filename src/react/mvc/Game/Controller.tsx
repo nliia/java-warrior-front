@@ -40,9 +40,9 @@ export class Controller extends React.Component<Props, State> {
             mapScheme: [
                 MapScheme.hero,
                 MapScheme.thorns,
-                MapScheme.field,
+                MapScheme.empty,
                 MapScheme.enemy,
-                MapScheme.field
+                MapScheme.empty
             ],
             messages: [ 'Начало игры' ]
         },

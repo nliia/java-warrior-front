@@ -1,6 +1,4 @@
 import AxiosWrapper from "./AxiosWrapper";
-import {ActionType} from "../react/components/abstract/Map";
-
 
 export default class CompilingApi extends AxiosWrapper {
 
@@ -12,8 +10,16 @@ export default class CompilingApi extends AxiosWrapper {
 
 }
 
+export type ActionType = "MOVE_FORWARD" | "SHOOT" | "FLIP_FORWARD" | "DEATH"
+
+export interface Action {
+    actionEnum: ActionType,
+    damaged: number
+    heroHp: number
+}
+
 export class CompileResponse {
-    actions: ActionType[]
+    actions: Action[]
     errorDescription: string
     message: string
     stageCompleted: boolean

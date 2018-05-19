@@ -24,8 +24,7 @@ export default class Header extends React.Component<Props, State> {
             }>
                 <Abstract.Logotype/>
                 <ul className={header_({elem: 'menu'})}>
-                    <Abstract.Button size="small" type="plain">Об игре</Abstract.Button>
-                    <Abstract.Button size="small" type="plain">Предыстория</Abstract.Button>
+                    <Abstract.Button href="/about" size="small" type="plain">Предыстория</Abstract.Button>
                     <Abstract.Button size="small" type="outlined">Войти</Abstract.Button>
                 </ul>
             </header>

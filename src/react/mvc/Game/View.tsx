@@ -124,8 +124,11 @@ export default class View extends React.Component<Props, State> {
 }
 
 const facilities = [
-    { title: 'warrior.walk()', description: 'движение персонажа вперед' },
-    { title: 'warrior.walk()', description: 'движение персонажа вперед с поклеточной проверкой на наличие врага' },
-    { title: 'warrior.walk()', description: 'движение персонажа вперед' },
-    { title: 'warrior.walk()', description: 'движение персонажа вперед' },
+    { title: 'walk()', description: 'Движение персонажа вперед' },
+    { title: 'attack()', description: 'Атаковать следующую клетку' },
+    { title: 'jump()', description: 'Прыжок через препятствие' },
+    { title: 'rest()', description: 'Передохнуть' },
+    { title: 'health()', description: 'Подлечить здоровье' },
+    { title: 'enemyAhead()', description: 'Проверка на наличие врага на следующей клетке' },
+    { title: 'spikesAhead()', description: 'Проверка на наличие шипов на следующей клетке' },
 ]

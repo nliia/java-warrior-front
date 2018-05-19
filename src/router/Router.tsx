@@ -13,7 +13,7 @@ export function create () {
     function renderRoutes (routes: RouteConfig[]) {
         return routes.map((routeProps, index) => {
             return (
-                routeProps.wrapper ?
+                routeProps.nowrap ? <Route {...routeProps} key={index}/> : routeProps.wrapper ?
                   React.createElement(routeProps.wrapper as any, {
                     ...routeProps,
                     key: index

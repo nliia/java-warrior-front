@@ -59,8 +59,17 @@ export default class View extends React.Component<Props, State> {
               <div className={choosingHero_({ elem: 'form' })}>
                   <Components.Abstract.Input
                       placeholder="Введите имя персонажа"
+                      onChange={this.props.controller.onChangePlayerName}
+                      value={this.props.controller.state.playerName}
                   />
-                  <Components.Abstract.Button type="active">
+                  <Components.Abstract.Button
+                      type="active"
+                      href="/game"
+                      disabled={
+                          this.props.controller.state.choosedIndex == undefined
+                          || this.props.controller.state.playerName.length == 0
+                      }
+                  >
                       Начать игру
                   </Components.Abstract.Button>
               </div>
