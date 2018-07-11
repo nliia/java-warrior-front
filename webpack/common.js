@@ -1,12 +1,10 @@
-const pp = require("project-paths"),
-  path = require("path"),
-  projectMeta = require(pp.get("configs", "project.meta.js")),
+const path = require("path"),
+  projectMeta = require('../configs/project.meta'),
   webpack = require('webpack');
 
 const plugins = {
   extractTextPlugin: require("extract-text-webpack-plugin"),
   htmlWebpackPlugin: require("html-webpack-plugin"),
-  // definePlugin: require("webpack").DefinePlugin,
   clean: require("webpack-cleanup-plugin")
 };
 
@@ -20,11 +18,11 @@ module.exports = function(env) {
 
   // Список зависимостей из файла package.json
   // для записи в отдельный файл vendors.
-  const dependencies = Object.keys(require(pp.get("/", "package.json")).dependencies || {});
+  const dependencies = Object.keys(require(path.resolve(`${__dirname}/../package.json`)).dependencies || {});
 
   // входные точки для webpack
   let entry = {
-    "app": pp.get("src", "client.tsx")
+    "app": path.resolve(`${__dirname}/../src/client.tsx`)
   };
 
   if (dependencies.length) entry["vendors"] = dependencies;
@@ -33,7 +31,7 @@ module.exports = function(env) {
     entry,
 
     output: {
-      path: pp.get("build"),
+      path: '/build',
       filename: path.join("[name].js"),
       chunkFilename: "[id].[hash].js"
     },
@@ -47,12 +45,12 @@ module.exports = function(env) {
 
     resolve: {
       extensions: [".js", ".jsx", ".ts", ".tsx", ".json", ".sass", ".scss", ".vue"],
-      modules: [pp.get("/", "node_modules")],
+      modules: ['node_modules'],
       alias: {
-        fonts: pp.get("assets", "fonts"),
-        img: pp.get("assets", "img"),
-        styles: pp.get("assets", "styles"),
-        utils: pp.get("src", "utils")
+        fonts: path.resolve(`${__dirname}/../src/assets/fonts`),
+        img: path.resolve(`${__dirname}/../src/assets/img`),
+        styles: path.resolve(`${__dirname}/../src/assets/styles`),
+        utils: path.resolve(`${__dirname}/../src/utils`)
       }
     },
 
@@ -77,7 +75,7 @@ module.exports = function(env) {
         {
           test: /\.jsx?$/,
           loader: "react-hot-loader/webpack",
-          include: pp.get("src")
+          include: path.resolve(`${__dirname}/../src`)
         },
 
         {
@@ -94,7 +92,6 @@ module.exports = function(env) {
             options: {
               babelrc: true,
               presets: [
-                // require.resolve('babel-preset-env'),
                 require.resolve('babel-preset-react'),
                 require.resolve('babel-preset-es2015'),
                 require.resolve('babel-preset-stage-0'),
@@ -153,7 +150,7 @@ module.exports = function(env) {
         ...projectMeta,
         filename: "index.html",
         chunks: ["vendors", "app"],
-        template: pp.get("templates", "index.ejs")
+        template: path.resolve(`${__dirname}/../src/templates/index.ejs`)
       }),
       new webpack.DefinePlugin({
         'process.env': {
@@ -171,6 +168,5 @@ module.exports = function(env) {
 
 
 const babelSettings = {
-	babelrc: true,
-	// extends: pp.getA("/", ".babelrc")
+	babelrc: true
 }

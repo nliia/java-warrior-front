@@ -1,6 +1,5 @@
-const pp = require("project-paths"),
-	webpack = require("webpack"),
-	projectMeta = require(pp.get("configs", "project.meta.js"));
+const path = require("path"),
+	webpack = require("webpack");
 
 const plugins = {
 	hotModuleReplacement: webpack.HotModuleReplacementPlugin,
@@ -13,7 +12,7 @@ function getConfig () {
 
 	return {
 
-		context: pp.get("/"),
+		context: path.resolve(`${__dirname}/../`),
 
 		devtool: "eval",
 
@@ -22,7 +21,7 @@ function getConfig () {
 		},
 
 		devServer: {
-			contentBase: pp.get("build"),
+			contentBase: './build',
 			hot: true,
 			inline: true,
 			quiet: false,

@@ -1630,12 +1630,6 @@ code-point-at@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
 
-coffee-script@~1.8.0:
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/coffee-script/-/coffee-script-1.8.0.tgz#9c9f1d2b4a52a000ded15b659791703648263c1d"
-  dependencies:
-    mkdirp "~0.3.5"
-
 collection-visit@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/collection-visit/-/collection-visit-1.0.0.tgz#4bc0373c164bc3291b4d368c829cf1a80a59dca0"
@@ -2214,10 +2208,6 @@ diffie-hellman@^5.0.0:
     bn.js "^4.1.0"
     miller-rabin "^4.0.0"
     randombytes "^2.0.0"
-
-dive@~0.3.0:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/dive/-/dive-0.3.1.tgz#87022028120067c63cafbf06a4cc0556e7ad2dcf"
 
 dns-equal@^1.0.0:
   version "1.0.0"
@@ -3159,10 +3149,6 @@ group-css-media-queries@^1.4.1:
   dependencies:
     css-parse "^2.0.0"
     css-stringify "^2.0.0"
-
-guess-root-path@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/guess-root-path/-/guess-root-path-1.0.0.tgz#2db0dbdf03377b379a238481a87829e005bd74d3"
 
 handle-thing@^1.2.5:
   version "1.2.5"
@@ -4419,10 +4405,6 @@ mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkd
   dependencies:
     minimist "0.0.8"
 
-mkdirp@~0.3.5:
-  version "0.3.5"
-  resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.3.5.tgz#de3e5f8961c88c787ee1368df849ac4413eca8d7"
-
 moment@*, moment@^2.22.0:
   version "2.22.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.1.tgz#529a2e9bf973f259c9643d237fda84de3a26e8ad"
@@ -5290,13 +5272,6 @@ progress@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.0.tgz#8a1be366bf8fc23db2bd23f10c6fe920b4389d1f"
 
-project-paths@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/project-paths/-/project-paths-1.0.5.tgz#956a0613145ec551422f633938c2afaa0e051672"
-  dependencies:
-    guess-root-path "^1.0.0"
-    recursive-search "^1.0.1"
-
 promise-inflight@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/promise-inflight/-/promise-inflight-1.0.1.tgz#98472870bf228132fcbdd868129bad12c3c029e3"
@@ -5644,13 +5619,6 @@ rebem-classname@0.x.x:
 recursive-readdir-sync@1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/recursive-readdir-sync/-/recursive-readdir-sync-1.0.6.tgz#1dbf6d32f3c5bb8d3cde97a6c588d547a9e13d56"
-
-recursive-search@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/recursive-search/-/recursive-search-1.0.1.tgz#f111b8ee5267f621b0c895252e1a6146e2fead10"
-  dependencies:
-    coffee-script "~1.8.0"
-    dive "~0.3.0"
 
 redent@^1.0.0:
   version "1.0.0"

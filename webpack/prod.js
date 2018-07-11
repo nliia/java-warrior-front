@@ -1,5 +1,5 @@
-const pp = require("project-paths"),
-	webpack = require("webpack");
+const webpack = require("webpack"),
+	path = require('path');
 
 const plugins = {
 	extractTextPlugin: require("extract-text-webpack-plugin"),
@@ -14,7 +14,7 @@ function getConfig () {
 
 	return {
 
-		context: pp.root(),
+		context: path.resolve(`${__dirname}/../`),
 
 		devtool: "cheap-source-map",
 
