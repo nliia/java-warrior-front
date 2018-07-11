@@ -10,12 +10,21 @@ export default class CompilingApi extends AxiosWrapper {
 
 }
 
-export type ActionType = "MOVE_FORWARD" | "SHOOT" | "FLIP_FORWARD" | "DEATH"
+export type ActionType =
+    "MOVE_FORWARD"
+    | "SHOOT"
+    | "FLIP_FORWARD"
+    | "FLIP_FORWARD_REJECTED"
+    | "DEATH"
+    | "STATIC"
+    | "MOVE_FORWARD_REJECTED"
+    | "TAKING_DAMAGE"
 
 export interface Action {
     actionEnum: ActionType,
     damaged: number
     heroHp: number
+    enemyDamage: number
 }
 
 export class CompileResponse {
@@ -28,6 +37,6 @@ export class CompileResponse {
         this.actions = []
         this.message = ""
         this.errorDescription = ""
-        this.stageCompleted = false
+        this.stageCompleted = undefined
     }
 }

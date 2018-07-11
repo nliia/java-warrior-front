@@ -89,10 +89,10 @@ export default class View extends React.Component<Props, State> {
                             width: 914,
                             zIndex: 2
                         }}
-                        config={{
-                            xFactor: .04,
-                            yFactor: .1,
-                        }}
+                        // config={{
+                        //     xFactor: .04,
+                        //     yFactor: .1,
+                        // }}
                     />
                     <Parallax.Layer
                         layerStyle={{

@@ -52,6 +52,21 @@ export default class View extends React.Component<Props, State> {
         })
     }
 
+    componentWillReceiveProps (nextProps: Props) {
+        if (nextProps.controller.state.allAnimationsEnd) {
+            if (nextProps.controller.state.compilingInfo.stageCompleted === false) {
+                if (nextProps.controller.state.tryingNumber == 10) {
+                    nextProps.controller.openLooserModal();
+                } else {
+                    nextProps.controller.openHeroDiedModal();
+                }
+            } else if (nextProps.controller.state.compilingInfo.stageCompleted) {
+                nextProps.controller.openStageCompletedModal();
+            }
+            nextProps.controller.onAllAnimationEnd(false);
+        }
+    }
+
     render() {
         return (
             <Components.Abstract.Loading
@@ -72,8 +87,9 @@ export default class View extends React.Component<Props, State> {
                         <div className={game_({ elem: 'area', mix: { block: 'game-block' } })}>
                             <div className={game_({ elem: 'map' })}>
                                 <Map
-                                    actions={this.props.controller.state.compilingInfo.actions}
+                                    actions={this.props.controller.state.compilingInfo.actions || []}
                                     scheme={this.props.controller.state.levelInfo.mapScheme}
+                                    onAllAnimationEnd={this.props.controller.onAllAnimationEnd}
                                 />
                             </div>
                             <div className={game_({ elem: 'logs' })}>
@@ -117,7 +133,6 @@ export default class View extends React.Component<Props, State> {
                     </div>
                 </div>
             </Components.Abstract.Loading>
-            
         )
     }
 
@@ -127,7 +142,6 @@ const facilities = [
     { title: 'walk()', description: 'Движение персонажа вперед' },
     { title: 'attack()', description: 'Атаковать следующую клетку' },
     { title: 'jump()', description: 'Прыжок через препятствие' },
-    { title: 'rest()', description: 'Передохнуть' },
     { title: 'health()', description: 'Подлечить здоровье' },
     { title: 'enemyAhead()', description: 'Проверка на наличие врага на следующей клетке' },
     { title: 'spikesAhead()', description: 'Проверка на наличие шипов на следующей клетке' },

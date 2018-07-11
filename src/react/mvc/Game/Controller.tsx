@@ -23,6 +23,7 @@ interface State {
     compilingInfo: CompileResponse
     code: string
     tryingNumber?: number
+    allAnimationsEnd: boolean
 }
 
 /**
@@ -47,7 +48,8 @@ export class Controller extends React.Component<Props, State> {
             messages: [ 'Начало игры' ]
         },
         compilingInfo: new CompileResponse(),
-        code: ""
+        code: "",
+        allAnimationsEnd: true
     }
 
     constructor (props) {
@@ -68,16 +70,17 @@ export class Controller extends React.Component<Props, State> {
             levelInfo.messages = [...levelInfo.messages, compilingInfo.message];
         }
         this.setState({ levelInfo })
-        if (compilingInfo.stageCompleted) {
-            this.openStageCompletedModal();
-        }
-        if (compilingInfo.message == "Hero died!") {
-            if (tryingNumber == 10) {
-                this.openLooserModal();
-            } else {
-                this.openHeroDiedModal();
-            }
-        }
+        // if (compilingInfo.stageCompleted) {
+        //     this.openStageCompletedModal();
+        // }
+        // if (compilingInfo.message == "Hero died!") {
+        //     if (tryingNumber == 10) {
+        //         this.openLooserModal();
+        //     } else {
+        //         this.openHeroDiedModal();
+        //     }
+        // }
+        console.log(compilingInfo)
         this.setState({ compilingInfo, tryingNumber })
     }
 
@@ -90,8 +93,11 @@ export class Controller extends React.Component<Props, State> {
     }
 
     onStartAgain = () => {
-        this.setState({...this.defaultState })
-        this.closeModal('stageFailed');
+        location.reload();
+    }
+
+    onAllAnimationEnd = (value:boolean) => {
+        this.setState({ allAnimationsEnd: value })
     }
 
     @Loading('levelArea', 'Загрузка игрового уровня...')
@@ -133,7 +139,7 @@ export class Controller extends React.Component<Props, State> {
             title: `Йеее, бой!`,
             icon: StageCompleteImage,
             buttonText: 'Следующий уровень',
-            onButtonClick: () => this.closeModal('stageCompleted'),
+            onButtonClick: () => location.reload(),
             content: [
                 <p style={{ textAlign: 'center', fontSize: '20px' }}>
                     Успех есть — можно поесть!

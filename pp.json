@@ -1,0 +1,10 @@
+{
+  "build": "./build",
+  "configs": "./configs",
+  "src": "./src",
+    "assets": "{src}/assets",
+      "styles": "{assets}/styles",
+    "templates": "{src}/templates",
+  "test": "./test",
+  "webpack": "./webpack"
+}

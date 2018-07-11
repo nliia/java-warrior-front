@@ -1,6 +1,6 @@
 const pp = require("project-paths"),
   path = require("path"),
-  projectMeta = require(pp.getA("configs", "project.meta.js")),
+  projectMeta = require(pp.get("configs", "project.meta.js")),
   webpack = require('webpack');
 
 const plugins = {
@@ -20,11 +20,11 @@ module.exports = function(env) {
 
   // Список зависимостей из файла package.json
   // для записи в отдельный файл vendors.
-  const dependencies = Object.keys(require(pp.getA("/", "package.json")).dependencies || {});
+  const dependencies = Object.keys(require(pp.get("/", "package.json")).dependencies || {});
 
   // входные точки для webpack
   let entry = {
-    "app": pp.getA("src", "client.tsx")
+    "app": pp.get("src", "client.tsx")
   };
 
   if (dependencies.length) entry["vendors"] = dependencies;
@@ -33,7 +33,7 @@ module.exports = function(env) {
     entry,
 
     output: {
-      path: pp.getA("build"),
+      path: pp.get("build"),
       filename: path.join("[name].js"),
       chunkFilename: "[id].[hash].js"
     },
@@ -49,10 +49,10 @@ module.exports = function(env) {
       extensions: [".js", ".jsx", ".ts", ".tsx", ".json", ".sass", ".scss", ".vue"],
       modules: [pp.get("/", "node_modules")],
       alias: {
-        fonts: pp.getA("assets", "fonts"),
-        img: pp.getA("assets", "img"),
-        styles: pp.getA("assets", "styles"),
-        utils: pp.getA("src", "utils")
+        fonts: pp.get("assets", "fonts"),
+        img: pp.get("assets", "img"),
+        styles: pp.get("assets", "styles"),
+        utils: pp.get("src", "utils")
       }
     },
 
@@ -77,7 +77,7 @@ module.exports = function(env) {
         {
           test: /\.jsx?$/,
           loader: "react-hot-loader/webpack",
-          include: pp.getA("src")
+          include: pp.get("src")
         },
 
         {
