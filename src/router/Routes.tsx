@@ -1,9 +1,9 @@
 import * as React from 'react'
-import { RouteConfig as RC } from "react-router-config"
+import {RouteConfig as RC} from "react-router-config"
 import Wrappers from './wrappers'
 
 import MVC from '../react/mvc'
-import { RouteComponentProps } from "react-router";
+import {RouteComponentProps} from "react-router";
 
 export default [
     {
@@ -17,6 +17,9 @@ export default [
     },
     {
         path: '/about', component: MVC.AboutGame.Controller, nowrap: true
+    },
+    {
+        path: '/login', component: MVC.Auth.Controller
     }
 ] as RouteConfig[]
 
