@@ -1,6 +1,7 @@
-import Controller from "../Auth/Controller";
-import * as React from "react";
-import GoogleLogin from 'react-google-login';
+import Controller from "../Auth/Controller"
+import * as React from "react"
+import GoogleLogin from 'react-google-login'
+import './styles'
 
 interface Props {
     controller: Controller
