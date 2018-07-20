@@ -9,16 +9,23 @@ export default class AuthApi extends AxiosWrapper {
         })).data
     }
 
+    static async signUp(login: string, password: string) {
+        return (await this.post<{ login: string, password: string }, UserInfo>("/sign_up", {
+            login: login,
+            password: password
+        })).data
+    }
+
 
 }
 
 export class UserInfo {
-    email: string
+    login: string
     level: number
     token: string
 
     constructor() {
-        this.email = ''
+        this.login = ''
         this.level = 0
         this.token = ''
     }

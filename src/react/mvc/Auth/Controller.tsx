@@ -42,7 +42,7 @@ export default class Controller extends React.Component<Props, State> {
     async login(login: string, password: string) {
         let userInfo = await AuthApi.auth(login, password);
         localStorage.setItem("token", userInfo.token);
-        localStorage.setItem("username", userInfo.email);
+        localStorage.setItem("username", userInfo.login);
         localStorage.setItem("userLevel", userInfo.level.toString());
         console.log("TOEKN AAA" + userInfo.token);
         this.props.history.push("/choosing-hero");

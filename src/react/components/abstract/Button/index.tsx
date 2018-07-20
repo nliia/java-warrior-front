@@ -1,8 +1,8 @@
 import * as React from 'react'
 import b_ from "../../../../utils/BEM"
 import WithClassNameProps from "../../../interfaces/props/WithClassNameProps"
-import { BEMEntity } from 'rebem-classname'
-import { withRouter, RouteComponentProps } from 'react-router-dom'
+import {BEMEntity} from 'rebem-classname'
+import {RouteComponentProps, withRouter} from 'react-router-dom'
 
 import './styles.scss'
 import {excludeKeys} from "../../../../utils/ObjectHelper";
@@ -25,8 +25,9 @@ export class Button extends React.Component<Props> {
         }
     }
 
-    render () {
-        let { className, classNames } = this.props;
+    render() {
+
+        let {className, classNames} = this.props;
         let button_ = b_('button')
 
         return (
@@ -34,7 +35,7 @@ export class Button extends React.Component<Props> {
                 {...excludeKeys(this.props, 'type', 'size', 'staticContext', 'match', 'history', 'location')}
                 onClick={this.onClick}
                 className={button_({
-                    mix: (classNames || []).concat([className]).map(className => ({ className })) as BEMEntity,
+                    mix: (classNames || []).concat([className]).map(className => ({className})) as BEMEntity,
                     mods: {
                         type: this.props.type || 'primary',
                         size: this.props.size || 'normal'

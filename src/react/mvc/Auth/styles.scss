@@ -2,7 +2,7 @@
 
 .login {
 
-  width: 80%;
+  width: 50%;
   margin: 0 auto;
   display: flex;
   position: absolute;
@@ -38,22 +38,10 @@
     position: relative;
   }
 
-  &__btnGoogle {
-    margin: 5px;
-    width: 165px;
-    height: 35px;
-    border-radius: 4px;
-    background: #db3236;
-    color: white;
-    border: 0px transparent;
-    text-align: center;
-  }
-
   &__form {
     margin-top: 50px;
     display: flex;
     justify-content: center;
-
     & > * {
       margin-right: 20px;
       &:last-child {
@@ -63,20 +51,5 @@
   }
 }
 
-.btnGoogle {
-  margin: 5px;
-  width: 165px;
-  height: 35px;
-  border-radius: 4px;
-  background: #db3236;
-  color: white;
-  border: 0px transparent;
-  text-align: center;
-}
-
-.btnGoogle:hover {
-  background: #db3236;
-  opacity: 0.6;
-}
 
 

@@ -29,16 +29,21 @@ export default class View extends React.Component<Props, State> {
             <Components.Abstract.Loading name="login">
                 <div className={login_({elem: 'form'})}>
                     <Components.Abstract.Input
+                        scale="small"
                         placeholder="Введите логин"
                         onChange={this.props.controller.onChangeLogin}
                         value={this.props.controller.state.login}/>
+                    <br/>
                     <Components.Abstract.Input
+                        inputType="password"
+                        scale="small"
                         placeholder="Введите пароль"
                         onChange={this.props.controller.onChangePassword}
                         value={this.props.controller.state.password}/>
+                    <br/>
                     <Components.Abstract.Button
                         type="active"
-                        size="normal"
+                        size="small"
                         onClick={this.props.controller.submitLogin}
                         disabled={!this.props.controller.state.login.length}
                     >

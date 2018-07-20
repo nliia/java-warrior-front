@@ -22,6 +22,9 @@ export default [
     },
     {
         path: '/logout', component: MVC.MainPage.Controller, exact: true, nowrap: true
+    },
+    {
+        path: '/sign-up', component: MVC.SignUp.Controller
     }
 ] as RouteConfig[]
 

@@ -3,8 +3,6 @@ import * as React from 'react'
 import View from './View'
 
 import Bomj from 'img/png/hero/swat.png'
-import {userInfo} from "os";
-import Utils, {default as Info} from "../../../Info";
 
 interface Props {
 
@@ -32,7 +30,6 @@ export default class Controller extends React.Component<Props, State> {
     }
 
     componentWillMount () {
-        console.log(Info.email)
         this.setState({
             heroes: [
                 { name: 'Агент Николай', image: Bomj, nonactive: false },

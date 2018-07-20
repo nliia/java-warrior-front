@@ -40,16 +40,16 @@ export default class Controller extends React.Component<Props, State> {
 
     @Loading('login', 'Регистрация...')
     async login(login: string, password: string) {
-        let userInfo = await AuthApi.auth(login, password);
+        let userInfo = await AuthApi.signUp(login, password);
         localStorage.setItem("token", userInfo.token);
-        localStorage.setItem("username", userInfo.email);
+        localStorage.setItem("username", userInfo.login);
         localStorage.setItem("userLevel", userInfo.level.toString());
-        console.log("TOEKN AAA" + userInfo.token);
+        console.log("LOGIN AAA" + userInfo.login);
         this.props.history.push("/choosing-hero");
 
     }
 
-    submitLogin = async () => {
+    submitSignUp = async () => {
         await this.login(this.state.login, this.state.password);
     }
     onChangeLogin = (e) => {

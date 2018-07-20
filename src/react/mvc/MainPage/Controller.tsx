@@ -1,7 +1,6 @@
 import * as React from 'react'
 
 import View from './View'
-import userInfo from "../../../Info";
 
 
 interface Props {

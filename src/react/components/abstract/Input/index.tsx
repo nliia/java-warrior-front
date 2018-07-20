@@ -1,7 +1,7 @@
 import * as React from 'react'
 import b_ from "../../../../utils/BEM"
 import WithClassNameProps from "../../../interfaces/props/WithClassNameProps"
-import { BEMEntity } from 'rebem-classname'
+import {BEMEntity} from 'rebem-classname'
 
 import './styles.scss'
 import {excludeKeys} from "../../../../utils/ObjectHelper";
@@ -9,21 +9,22 @@ import {excludeKeys} from "../../../../utils/ObjectHelper";
 interface Props extends React.InputHTMLAttributes<HTMLInputElement>, WithClassNameProps {
     type?: InputType
     scale?: InputSize
+    inputType?: InputT
 }
 
 let input_ = b_('input')
 
 export default class Input extends React.Component<Props> {
 
-    render () {
-        let { className, classNames } = this.props;
+    render() {
+        let {className, classNames} = this.props;
 
         return (
             <input
                 {...excludeKeys(this.props, 'type', 'scale')}
-                type="text"
+                type={this.props.inputType || 'text'}
                 className={input_({
-                    mix: (classNames || []).concat([className]).map(className => ({ className })) as BEMEntity,
+                    mix: (classNames || []).concat([className]).map(className => ({className})) as BEMEntity,
                     mods: {
                         type: this.props.type || 'primary',
                         size: this.props.scale || 'normal'
@@ -36,4 +37,5 @@ export default class Input extends React.Component<Props> {
 }
 
 type InputType = "primary" | 'plain' | 'outlined';
+type InputT = "text" | "password";
 type InputSize = 'small' | 'normal' | 'large';

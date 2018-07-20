@@ -20,6 +20,13 @@ export class Header extends React.Component<Props> {
         localStorage.removeItem("token");
         this.props.history.push('/')
     }
+
+    signUp = () => {
+        this.props.history.push('/sign-up')
+    }
+    login = () => {
+        this.props.history.push('/login')
+    }
     render() {
         let header_ = b_('header')
         return (
@@ -30,7 +37,12 @@ export class Header extends React.Component<Props> {
                 <ul className={header_({elem: 'menu'})}>
                     <Abstract.Button href="/about" size="small" type="plain">Предыстория</Abstract.Button>
                     <LoginButton isLoginPage={location.pathname === '/login'}
-                                 func={this.logout}>{location.pathname}</LoginButton>
+                                 isSignUpPage={location.pathname === '/sign-up'}
+                                 func={this.logout}
+                                 func2={this.signUp}
+                                 loginFunc={this.login}>
+                        {location.pathname}
+                    </LoginButton>
                 </ul>
             </header>
         )
@@ -40,8 +52,12 @@ export class Header extends React.Component<Props> {
 function LoginButton(props) {
     const isLoginPage = props.isLoginPage;
     if (isLoginPage) {
-        return <Abstract.Button onClick={() => this.props.history.push('/signIn')}
+        return <Abstract.Button onClick={props.func2}
                                 size="small" type="plain">Зарегистрироваться</Abstract.Button>;
+    }
+    if (props.isSignUpPage) {
+        return <Abstract.Button onClick={props.loginFunc}
+                                size="small" type="plain">Войти</Abstract.Button>;
     }
     return <Abstract.Button onClick={props.func}
                             size="small" type="plain">Выйти</Abstract.Button>;
