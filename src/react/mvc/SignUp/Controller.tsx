@@ -38,7 +38,7 @@ export default class Controller extends React.Component<Props, State> {
         this.state = {...this.defaultState}
     }
 
-    @Loading('login', 'Авторизация...')
+    @Loading('login', 'Регистрация...')
     async login(login: string, password: string) {
         let userInfo = await AuthApi.auth(login, password);
         localStorage.setItem("token", userInfo.token);

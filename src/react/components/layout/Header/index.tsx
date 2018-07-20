@@ -7,40 +7,18 @@ import {RouteComponentProps, withRouter} from 'react-router'
 
 
 import './styles'
-import GoogleLogin from "react-google-login";
-import CompilingApi from "../../../../api/CompilingApi";
-import Loading from "../../../../@/loadings/Loading";
-import Info from "../../../../Info";
-import Components from '../../../components'
-
 
 interface Props extends WithClassNameProps, RouteComponentProps<any> {
 }
 
 interface State {
-    token: string
+
 }
 
 export class Header extends React.Component<Props> {
-
-    constructor(props) {
-        super(props);
-        this.state = {token: null};
-    }
-
-    async login() {
-        console.log('  ddddddddddddddddddddddddddddddddddd    AAAAAAAAAAAAAAAAAAAAAAAAA')
-
-        let userInfo = await CompilingApi.auth()
-        this.map(userInfo)
-        console.log(Info.name + '      AAAAAAAAAAAAAAAAAAAAAAAAA')
-    }
-
-    map(userInfo) {
-        Info.email = userInfo.email
-        Info.level = userInfo.level
-        Info.name = userInfo.name
-        Info.token = userInfo.token
+    logout = () => {
+        localStorage.removeItem("token");
+        this.props.history.push('/')
     }
     render() {
         let header_ = b_('header')
@@ -51,16 +29,22 @@ export class Header extends React.Component<Props> {
                 <Abstract.Logotype/>
                 <ul className={header_({elem: 'menu'})}>
                     <Abstract.Button href="/about" size="small" type="plain">Предыстория</Abstract.Button>
-                    {/*<Abstract.Button href="/login" size="small" type="plain">Войти</Abstract.Button>*/}
-                    <Components.Abstract.Loading
-                        name="auth"
-                    >
-                        <Abstract.Button onClick={this.login} size="small" type="plain">Войти через Google</Abstract.Button>
-                    </Components.Abstract.Loading>
+                    <LoginButton isLoginPage={location.pathname === '/login'}
+                                 func={this.logout}>{location.pathname}</LoginButton>
                 </ul>
             </header>
         )
     }
+}
+
+function LoginButton(props) {
+    const isLoginPage = props.isLoginPage;
+    if (isLoginPage) {
+        return <Abstract.Button onClick={() => this.props.history.push('/signIn')}
+                                size="small" type="plain">Зарегистрироваться</Abstract.Button>;
+    }
+    return <Abstract.Button onClick={props.func}
+                            size="small" type="plain">Выйти</Abstract.Button>;
 }
 
 

@@ -7,11 +7,6 @@ export default class CompilingApi extends AxiosWrapper {
             inputtedCode: code
         })).data
     }
-
-    static async auth() {
-        return (await this.get<{}, UserInfo>("/user", {})).data
-    }
-
 }
 
 export type ActionType =
@@ -31,19 +26,6 @@ export interface Action {
     enemyDamage: number
 }
 
-export class UserInfo {
-    name: string
-    email: string
-    level: number
-    token: string
-
-    constructor() {
-        this.name = ''
-        this.email = ''
-        this.level = 0
-        this.token = ''
-    }
-}
 
 export class CompileResponse {
     actions: Action[]

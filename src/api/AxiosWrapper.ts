@@ -1,6 +1,13 @@
-import axios, { AxiosResponse, AxiosAdapter, AxiosBasicCredentials, AxiosTransformer, AxiosProxyConfig, CancelToken } from "axios"
+import axios, {
+    AxiosAdapter,
+    AxiosBasicCredentials,
+    AxiosProxyConfig,
+    AxiosResponse,
+    AxiosTransformer,
+    CancelToken
+} from "axios"
 
-const api = "http://localhost:8080"
+const api = "http://89.223.91.62:9090"
 
 export default class AxiosWrapper {
 

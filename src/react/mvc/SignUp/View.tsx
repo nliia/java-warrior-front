@@ -11,7 +11,7 @@ interface Props {
 interface State {
 }
 
-const login_ = b_('login')
+const login_ = b_('signin')
 
 /**
  * View
@@ -26,7 +26,8 @@ export default class View extends React.Component<Props, State> {
     render() {
 
         return (
-            <Components.Abstract.Loading name="login">
+            <Components.Abstract.Loading name="signin">
+
                 <div className={login_({elem: 'form'})}>
                     <Components.Abstract.Input
                         placeholder="Введите логин"
@@ -42,7 +43,7 @@ export default class View extends React.Component<Props, State> {
                         onClick={this.props.controller.submitLogin}
                         disabled={!this.props.controller.state.login.length}
                     >
-                        Войти
+                        Зарегистрироваться
                     </Components.Abstract.Button>
                 </div>
             </Components.Abstract.Loading>

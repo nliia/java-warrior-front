@@ -44,9 +44,9 @@ export default class View extends React.Component<Props, State> {
                     </p>
                     <div className={mainHero_({ elem: 'buttons' })}>
                         <Components.Abstract.Button
-                            href="/choosing-hero"
+                            href="/login"
                         >
-                            Начать игру
+                            Войти
                         </Components.Abstract.Button>
                         <Components.Abstract.Button
                             href="/about"
