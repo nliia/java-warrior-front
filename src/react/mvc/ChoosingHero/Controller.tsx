@@ -3,6 +3,7 @@ import * as React from 'react'
 import View from './View'
 
 import Bomj from 'img/png/hero/swat.png'
+import LevelInfoApi from "../../../api/LevelInfoApi";
 
 interface Props {
 
@@ -38,6 +39,7 @@ export default class Controller extends React.Component<Props, State> {
                 { name: 'В разработке', image: Bomj, nonactive: true },
             ]
         })
+        this.getStage()
     }
 
     onChoose = (choosedIndex: number) => {
@@ -52,6 +54,13 @@ export default class Controller extends React.Component<Props, State> {
         return [
             <View controller={this} />
         ]
+    }
+
+    async getStage() {
+        let token = localStorage.getItem('token')
+        let stage = await LevelInfoApi.getStage(token);
+        localStorage.setItem('stage',JSON.stringify(stage))
+        console.log('STAGE' + stage)
     }
 
 }

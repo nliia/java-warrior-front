@@ -2,10 +2,10 @@ import AxiosWrapper from "./AxiosWrapper";
 
 export default class CompilingApi extends AxiosWrapper {
 
-    static async compile(code: string) {
+    static async compile(code: string, token : string) {
         return (await this.post<{ inputtedCode: string }, CompileResponse>("/compile", {
             inputtedCode: code
-        })).data
+        }, {headers : { 'Authorization' : token}})).data
     }
 }
 
